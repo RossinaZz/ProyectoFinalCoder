@@ -1,0 +1,20 @@
+
+{% extends "FinalGym/padre.html" %}
+
+{% load static %}
+
+{% block contenidoModificable %}
+
+
+    <p> Nombre de la Clase: <i>{{ clase.nombre }} </i></p>
+    <p> Camada: <i>{{ clase.camada }} </i></p>
+    <p> Duracion: <i>{{ clase.duracion }} </i></p>
+    <p>
+        <a href="{% url 'ListClases' %}">Regresar</a>
+
+
+    </p>
+
+{% endblock %}
+
+

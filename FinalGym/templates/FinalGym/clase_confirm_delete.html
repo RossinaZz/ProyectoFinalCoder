@@ -1,0 +1,20 @@
+
+{% extends "FinalGym/padre.html" %}
+
+{% load static %}
+
+{% block contenidoModificable %}
+
+
+    <form method="post">{% csrf_token %}
+
+        ¿Desea borrar la clase "{{ object }}"?
+
+        <input type="submit" view="Si">
+        
+    </form>
+
+
+
+    
+{% endblock %}

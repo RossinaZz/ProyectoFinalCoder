@@ -1,0 +1,33 @@
+{% extends "FinalGym/padre.html" %}
+
+{% load static %}
+
+
+{% block contenidoModificable %}
+
+{% for e in entrenadores %}
+
+
+<li>{{e}}</li>
+
+<button>
+
+    <a href="{% url 'BorrarEntrenador' e.nombre %}"> Borrar </a>
+</button>
+
+<button>
+    <a href="{% url 'EditarEntrenador' e.nombre %}"> Editar </a>
+
+</button>
+
+
+
+{% endfor %}
+
+<br>
+<br>
+
+{% endblock %}
+
+
+

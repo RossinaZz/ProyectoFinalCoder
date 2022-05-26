@@ -1,0 +1,49 @@
+
+{% extends "FinalGym/padre.html" %}
+
+{% load static %}
+
+{% block contenidoModificable %}
+
+
+
+    <h1>Usuario de TooFitness</h1>
+
+     
+    
+    <ul>
+        <a href="{% url 'New' %}">Crear</a>
+
+
+        {% for usuario in object_list %} 
+
+        <li>
+
+            <p>Nombre: {{usuario.nombre}}</p>
+            <p>Apellido: {{usuario.apellido}}</p>
+            <p>email: {{usuario.email}}</p>
+            <p>Numero cliente: {{usuario.numerocliente}}</p>
+            <p>Clase inscripta: {{usuario.claseinscripta}}</p>
+            
+
+            <p>
+
+                <a href="{% url 'Detail' usuario.id %}">Ver</a>
+                <a href="{% url 'Edit' usuario.id %}">Editar</a>
+                <a href="{% url 'Delete' usuario.id %}">Borrar</a>
+
+
+
+            </p>
+
+
+        </li>
+
+        
+    {% endfor %}
+ </ul>
+
+ {% endblock %}
+
+
+

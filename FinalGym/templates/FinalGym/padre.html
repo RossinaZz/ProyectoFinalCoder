@@ -1,0 +1,377 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TooFitness</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'FinalGym/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'FinalGym/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'FinalGym/css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'FinalGym/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'FinalGym/css/barfiller.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'FinalGym/css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'FinalGym/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'FinalGym/css/style.css' %}" type="text/css">
+</head>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="logo">
+                            <img src="{% static 'FinalGym/img/logo.png' %}">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <nav class="nav-menu">
+                        <ul>
+                            <li><a href="{% url 'Inicio' %}">Inicio</a></li>
+                            <li><a href="{% url 'ListUsuario' %}">Usuarios</a></li>
+                            <li><a href="{% url 'ListClases' %}">Clases</a></li>
+                            <li><a href="{% url 'ListaEntrenadores' %}">Entrenadores</a></li>
+
+                            {% if user.is_authenticated %}
+                            <li><a>Bienvenido, {{user.username}}</a></li>
+
+                            {% with first_image=user.avatar_set.first %} 
+                                {% if first_image %} 
+                                     <a href="{{ first_image.imagen.url }}" target="_blank">
+                                    <img src="{{ first_image.imagen.url }}" height="40px">
+                                 {% endif %}
+                            {% endwith %} 
+                             <li><a class="navbar-brand" href="{% url 'Subir Avatar' %}">Añadir Avatars</a></li>
+                             <li><a href="{% url 'Logout' %}">Cerrar Sesion</a></li>
+                            {% endif %}
+
+
+                            {% if not user.is_authenticated %}
+                            <li><a href="{% url 'Register' %}">Registrarse</a></li>
+                            <li><a href="{% url 'Login' %}">Iniciar Sesion</a></li>
+
+                            {% endif %}
+
+
+
+    </header>
+    <!-- Header End -->
+   
+    <!-- ChoseUs Section Begin -->
+
+    <section class="choseus-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <br>
+                        <span>TooFitness</span>
+                        <h2>LA SALUD ES PODER</h2>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            {% block contenidoModificable3 %}
+            {% endblock %}
+            <section class="choseus-section spad">
+            <div class="row">
+                <div class="col-lg-3 col-sm-5">
+                    <div class="cs-item">
+                        <span class="flaticon-034-stationary-bike"></span>
+                        <h4>Equipamiento</h4>
+                        <p>TooFitness se caracteriza por su constante evolución, es por eso que contamos con equipos de última generación. </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-5">
+                    <div class="cs-item">
+                        <span class="flaticon-033-juice"></span>
+                        <h4>Plan nutricional</h4>
+                        <p>Realizamos una evaluación de su condición física,brindando una prueba de composición corporal y una linea de tiempo personalizada para lograr sus objetivos.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-002-dumbell"></span>
+                        <h4>Entrenadores Capacitados</h4>
+                        <p>Desde el diseño de un plan de entrenamiento personalizado hasta la motivación y el apoyo continuo, los entrenadores de TooFitness® se dedican a ayudarlo a establecer y lograr sus objetivos personales de acondicionamiento físico.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-014-heart-beat"></span>
+                        <h4>Seguimiento</h4>
+                        <p>Nuestros entrenadores están para ayudarlo a agregar variedad a su rutina de ejercicios, al tiempo que lo ayudan a aprender nuevos ejercicios de la forma adecuada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ChoseUs Section End -->
+   
+    {% block contenidoModificable2 %}
+
+    {% endblock %}
+
+    <section class="classes-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Algunas de nuestras clases</span>
+                        <h2>TooFitness</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{% static 'FinalGym/img/classes/class-1.jpg' %}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>Nutrición</span>
+                            <h5>Plan nutricional</h5>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{% static 'FinalGym/img/classes/class-2.jpg' %}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>Cardio</span>
+                            <h5>Yoga/Pilates</h5>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{% static 'FinalGym/img/classes/class-3.jpg' %}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>FUERZA</span>
+                            <h5>Entrenamiento Militar/ Circuito de Potencia</h5>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{% static 'FinalGym/img/classes/class-4.jpg' %}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>Cardio</span>
+                            <h4>GAP/Circuito de Potencia</h4>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="class-item">
+                        <div class="ci-pic">
+                            <img src="{% static 'FinalGym/img/classes/class-5.jpg' %}" alt="">
+                        </div>
+                        <div class="ci-text">
+                            <span>Entrenamiento</span>
+                            <h4>Boxeo</h4>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block contenidoModificable %}
+
+    {% endblock %}
+
+    <!-- Pricing Section Begin -->
+    <section class="pricing-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>TooFitness</span>
+                        <h2>Planes</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>Costo de una clase</h3>
+                        <div class="pi-price">
+                            <h2>$ 500</h2>
+                            <span>CLASE UNICA</span>
+                        </div>
+                        <ul>
+                            <li>Equipos ilimitados</li>
+                            <li>Personal a disposicion</li>
+                            <li>Sin restriccion de tiempo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>6 meses</h3>
+                        <div class="pi-price">
+                            <h2>$1000</h2>
+                            <span>por mes</span>
+                        </div>
+                        <ul>
+                            <li>Equipos ilimitados</li>
+                            <li>Personal trainer</li>
+                            <li>Plan Alimenticio</li>
+                            <li>App TooFitness (entrenamiento virtual)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="ps-item">
+                        <h3>12 meses </h3>
+                        <div class="pi-price">
+                            <h2>$800</h2>
+                            <span>por mes</span>
+                        </div>
+                        <ul>
+                            <li>Equipos Elimitados</li>
+                            <li>Personal trainer</li>
+                            <li>Plan Alimenticio</li>
+                            <li>App TooFitness (entrenamiento virtual) </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <!-- Get In Touch Section Begin -->
+    <div class="gettouch-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gt-text">
+                        <i class="fa fa-map-marker"></i>
+                        <p>Avenida Pedragosa Sierra-Punta del Este<br/> Uruguay</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gt-text">
+                        <i class="fa fa-mobile"></i>
+                        <ul>
+                            <li>+598 99 387 765</li>
+                            <li>+598 99 374 152</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gt-text email">
+                        <i class="fa fa-envelope"></i>
+                        <p>Soporte.TooFitness@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Get In Touch Section End -->
+
+    <!-- Footer Section Begin -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="fs-about">
+                        <div class="fa-logo">
+                            <a><img src="{% static 'FinalGym/img/logo.png' %}" alt=""></a>
+                        </div>
+                        <p>TooFitneess es una comunidad de personas con ideas afines que buscan aprovechar al máximo sus vidas y sus entrenamientos, y cada vez que ingrese a nuestro club, le garantizamos que estaremos allí animándolo en cada viaje,
+                             repetición y recuperación. ¿Estás listo para TRABAJAR? </p>
+                        <div class="fa-social">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="fs-widget">
+                        <h4>TooFitness</h4>
+                        <ul>
+                            <li><a href="{% url 'ListUsuario' %}">Usuario</a></li>
+                            <li><a href="{% url 'Inicio' %}">Inicio</a></li>
+                            <li><a href="{% url 'ListClases' %}">Clases</a></li>
+                            <li><a href="{% url 'ListaEntrenadores' %}">Entrenadores</a></li>
+                            <li><a href="{% url 'About-us' %}">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="fs-widget">
+                        <h4>SESION</h4>
+                        <ul>
+                            
+                            {% if not user.is_authenticated %}
+                            <li><a href="{% url 'Register' %}">Registrarse</a></li>
+                            <li><a href="{% url 'Login' %}">Iniciar Sesion</a></li>
+                            {% endif %}
+
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'Logout' %}">Cerrar Sesion</a></li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="fs-widget">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3270.840816436441!2d-54.92601992987614!3d-34.93552901403105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9575052c11a00cf5%3A0xd109393272b57511!2sAv.%20Pedragosa%20sierra%2C%20Punta%20del%20Este%2C%20Departamento%20de%20Maldonado%2C%20Uruguay!5e0!3m2!1sen!2sus!4v1653346581813!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </ul>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="copyright-text">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="fa fa-heart" aria-hidden="true"></i> by <a target="_blank">RossinaZ</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+</body>
+
+</html>

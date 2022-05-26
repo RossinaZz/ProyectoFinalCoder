@@ -1,0 +1,51 @@
+{% extends "FinalGym/padre.html" %}
+    
+
+{% block contenidoModificable %}
+
+{% endblock %}
+
+{% block contenidoAvatar %}
+
+
+
+{% endblock %}
+
+{% block contenidoModificable2 %}
+
+
+
+    
+    <a href="{% url 'New' %}">Crear</a>
+
+    <ul>
+
+        {% for clase in object_list %} 
+
+        <li>
+
+            <p>Nombre: {{clase.nombre}}</p>
+
+            <p>
+
+                <a href="{% url 'Detail' clase.id %}">Ver</a>
+                <a href="{% url 'Edit' clase.id %}">Editar</a>
+                <a href="{% url 'Delete' clase.id %}">Borrar</a>
+
+
+
+            </p>
+
+
+        </li>
+
+        {% endfor %}
+
+
+    </ul>
+
+{% endblock %}
+
+
+
+

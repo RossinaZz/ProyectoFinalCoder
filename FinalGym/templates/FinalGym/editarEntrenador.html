@@ -1,0 +1,47 @@
+{% extends "FinalGym/padre.html" %}
+
+{% load static %}
+
+{% block contenidoModificable %}
+
+<section class="team-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="team">
+                    <div class="section-title">
+                        <span>Entrenadores</span>
+                        <h2>Editar</h2>
+                    </div>
+                    
+                    <div>
+                    
+                </div>
+            </div>
+        </div>
+</section>
+
+ 
+ {% if miformulario.errors %}
+
+<p style="color:red"> Datos Incorrectos</p>
+
+{% endif %}
+
+<form action="" method="POST"> {% csrf_token %}
+
+    <table>
+
+        {{ miFormulario.as_table }}
+
+    </table>
+
+    <input type="submit" value="Enviar" >
+
+
+
+</form>
+{% endblock %}
+
+
+
